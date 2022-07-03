@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block title %}My awesome page title{% endblock %}
+{% block content %} {{questions[num].question}} {%for choice in
+questions[num].choices%}
+<br />
+<br />
+
+<input type="radio" id="{{choice}}" name="yes_no" value="{{choice}}" />
+<label for="{{choice}}">{{choice}}</label>
+
+{%endfor%}
+
+<br />
+
+<a href="/questions/{{num+1}}"><button>Next Question</button></a>
+{% endblock %}
