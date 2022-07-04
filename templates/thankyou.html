@@ -2,5 +2,5 @@
 {% block content %}
 <h1>thank you!</h1>
 
-here are your answers: {% for answer in responses%} {{answer}} {%endfor%} {%
-endblock %}
+here are your answers: {% for answer in session['responses']%} {{answer}}
+{%endfor%} {% endblock %}

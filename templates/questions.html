@@ -2,11 +2,17 @@
 {% block content %} {% with messages =
 get_flashed_messages(with_categories=true)%} {%if messages%} {% for category,
 msg in messages %}
+<br />
+<br />
 <p class="{{category}}">{{msg}}</p>
-{% endfor %} {%endif%} {%endwith%} {{questions[num].question}}
+
+{% endfor %} {%endif%} {%endwith%}
+<br />
+<br />
+{{questions[num].question}}
 <form action="/answer/{{num}}" method="post">
   {%for choice in questions[num].choices%}
-  <br />
+
   <br />
 
   <input
@@ -21,7 +27,11 @@ msg in messages %}
   {%endfor%}
   <br />
   <br />
+  {%if num == 3%}
+  <button>Submit Survey</button>
+  {%else %}
   <button>Next Question</button>
+  {%endif%}
 </form>
 
 <br />

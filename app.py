@@ -1,6 +1,6 @@
 from crypt import methods
 from urllib import response
-from flask import Flask, request, render_template, redirect, flash
+from flask import Flask, request, render_template, redirect, flash, session
 
 import surveys
 
@@ -26,9 +26,9 @@ def show_home_page():
 
 @app.route('/questions/<int:num>')
 def show_questions(num):
-    if num != len(responses):
+    if num != len(session['responses']):
         flash('please answer the questions in order', 'error')
-        return redirect(f"/questions/{len(responses)}")
+        return redirect(f"/questions/{len(session['responses'])}")
 
     
     elif num == len(questions):
@@ -38,13 +38,22 @@ def show_questions(num):
 
 @app.route('/answer/<int:num>', methods=['POST'])
 def test(num):
-    if len(responses) < len(questions):
+    if len(session['responses']) < len(questions):
         option = request.form['options']
+        responses = session['responses']
         responses.append(option)
-        return redirect(f"/questions/{num}")
+        session['responses'] = responses
+        return redirect(f"/questions/{len(session['responses'])}")
     else:
         return redirect('/thankyou')
     
 @app.route('/thankyou')
 def thank_you():
-    return render_template('thankyou.html', responses=responses)
+    return render_template('thankyou.html')
+
+
+@app.route('/session', methods=["POST"])
+def empty_responses():
+    session['responses'] = []
+    return redirect('/questions/0')
+    

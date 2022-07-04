@@ -2,6 +2,9 @@
 {% block content %}
 <h3>{{title}}</h3>
 <p>{{instructions}}</p>
-<a href="/questions/0"><button>Go to survey</button></a>
+
+<form action="/session" method="post">
+  <button>Go to survey</button>
+</form>
 
 {% endblock %}
