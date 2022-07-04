@@ -27,10 +27,9 @@ def show_home_page():
 @app.route('/questions/<int:num>')
 def show_questions(num):
     if num != len(responses):
-        if num > len(responses):
-            flash('please answer the questions in order', 'error')
-            return redirect(f"/questions/{len(responses)}")
+        flash('please answer the questions in order', 'error')
         return redirect(f"/questions/{len(responses)}")
+
     
     elif num == len(questions):
         return redirect('/thankyou')
