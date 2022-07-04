@@ -1,0 +1,5 @@
+{% extends 'base.html' %} {% block title %}My awesome page title{% endblock %}
+{% block content %} {% for answer in responses %}
+<h1>{{answer}}</h1>
+
+{%endfor%} {% endblock %}

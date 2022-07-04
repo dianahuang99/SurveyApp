@@ -2,10 +2,9 @@
 <html>
   <head>
     <title>{% block title %}TITLE GOES HERE{% endblock %}</title>
-    <link rel="stylesheet" href="/static/css/styles.css" />
-    <script src="http://unpkg.com/jquery"></script>
+    <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    {% block content %}BODY CONTENT GOES HERE{% endblock %}
+    {{responses}} {% block content %}BODY CONTENT GOES HERE{% endblock %}
   </body>
 </html>
